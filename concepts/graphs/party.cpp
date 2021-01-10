@@ -1,45 +1,54 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
-int main()
+class Node
 {
-    int  n;
-    cin>>n;
-    int arr[n];
-    int gr[n][n];
+	public: long id;
+	
+	Node()
+	{
+		id = -1;
+	}
+	
+	public: vector<Node *>ch;
+};
 
-    for(int i=0;i<n;i++)
-    {
-        cin>>arr[i];
-    }
-
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            gr[i][j]=0;
-        }
-    }
-
-    for(int k=0;k<n;k++)
-    {
-        if(arr[k]>0)
-        {
-            gr[k][arr[k]-1] = 1;
-        }
-    }
-    cout<<endl;
-
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            cout<<gr[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-
-
-
-    return 0;
+bool search(vector<Node *>vec,long val)
+{
+	vector<Node *>::iterator i = vec.begin();
+	
+	while(i->id!=val && i!=vec.end())
+	{
+		i++;
+	}
+	
+	if(i==vec.end())
+	{
+		return false;
+	}
+	
+	return true;
 }
+
+Node * createNode(long val)
+{
+	Node *nnode;
+	nnode= new Node;
+	nnode->id = val;
+	return nnode;
+}
+
+void createTree(Node *root,long val)
+{
+	if(root->id==-1)
+	{
+		root->id=val;
+	}
+	
+	else if(root->ch.empty())
+	{
+		root->ch.push_back(createNode(val));
+	}
+}
+	
