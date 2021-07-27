@@ -18,15 +18,25 @@ int main()
 	
 	else
 	{
-		long temp = m;
 		long count = 0;
 		
-		while(temp<=n)
+		if((n-1) == m/2)
 		{
-			temp*=2;
-			count++;
+			cout<<2;
 		}
 		
-		cout<<count+(temp-n)<<'\n';
+		else
+		{
+			while(n<m)
+			{
+				n*=2;
+				count++;
+				cout<<n<<" "<<count<<endl;
+			}
+			
+			cout<<count+(n-m)<<'\n';
+		}
+		
+		
 	}
 }
